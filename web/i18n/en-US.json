@@ -1,0 +1,42 @@
+{
+  "ui": {
+    "eyebrow": "Retake Planner",
+    "heroTitle": "Retake Schedule Planner",
+    "heroSubtitle": "Local-first | Live timetable preview | Ranked plans",
+    "presetTitle": "Quick Presets",
+    "rankingTitle": "Ranked Plans",
+    "pageSizeLabel": "Per page",
+    "prevPage": "Prev",
+    "nextPage": "Next",
+    "preferenceTitle": "Preference Filter",
+    "teacherPreferenceLabel": "Preferred Teacher",
+    "teacherPreferencePlaceholder": "Type teacher keywords, separated by commas",
+    "dayPreferenceLabel": "Preferred Weekdays",
+    "statusTitle": "Current Selection Status",
+    "weekPanelTitle": "Live Timetable Panel",
+    "weekSelectLabel": "Week",
+    "weekPrevBtn": "Prev Week",
+    "weekNextBtn": "Next Week",
+    "periodHead": "Period",
+    "settingsToggle": "Settings",
+    "settingsTitle": "Settings",
+    "languageLabel": "Language",
+    "darkModeLabel": "Dark Mode",
+    "demoModeLabel": "Demo Mode",
+    "demoModeOff": "关闭",
+    "demoModeHash": "Deterministic Mask",
+    "demoModeRandom": "Random Mask"
+  },
+  "dayNames": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+  "presetButtons": {
+    "plan1": "Preview Plan 1",
+    "plan2": "Preview Plan 2",
+    "plan3": "Preview Plan 3"
+  },
+  "presetDetail": {
+    "title": "Scoring Notes",
+    "plan1": "Plan 1 is chosen by highest s1, focusing on conflict safety and schedule stability.",
+    "plan2": "Plan 2 is chosen by highest s2, focusing on weekday concentration and rhythm.",
+    "plan3": "Plan 3 prioritizes s3 and keeps diversity from Plan 1 as a fallback option."
+  }
+}

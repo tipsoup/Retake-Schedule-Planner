@@ -1,0 +1,42 @@
+{
+  "ui": {
+    "eyebrow": "Retake Planner",
+    "heroTitle": "重修课表规划器",
+    "heroSubtitle": "本地部署 | 实时课表预览 | 多方案评分排序",
+    "presetTitle": "快速预设",
+    "rankingTitle": "全量规划排名",
+    "pageSizeLabel": "每页",
+    "prevPage": "上一页",
+    "nextPage": "下一页",
+    "preferenceTitle": "偏好筛选",
+    "teacherPreferenceLabel": "倾向选择教师",
+    "teacherPreferencePlaceholder": "输入教师关键词，多个可用逗号分隔",
+    "dayPreferenceLabel": "倾向选择工作日",
+    "statusTitle": "当前组合状态",
+    "weekPanelTitle": "实时课表小窗",
+    "weekSelectLabel": "显示周次",
+    "weekPrevBtn": "上一周",
+    "weekNextBtn": "下一周",
+    "periodHead": "节次",
+    "settingsToggle": "设置",
+    "settingsTitle": "设置",
+    "languageLabel": "语言",
+    "darkModeLabel": "暗色模式",
+    "demoModeLabel": "演示模式",
+    "demoModeOff": "关闭",
+    "demoModeHash": "加密映射（同文同密）",
+    "demoModeRandom": "全随机字符"
+  },
+  "dayNames": ["周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+  "presetButtons": {
+    "plan1": "预览方案一",
+    "plan2": "预览方案二",
+    "plan3": "预览方案三"
+  },
+  "presetDetail": {
+    "title": "评分说明",
+    "plan1": "方案一按 s1 评分最高生成，侧重冲突安全与课堂稳定性。",
+    "plan2": "方案二按 s2 评分最高生成，侧重工作日集中与节奏平衡。",
+    "plan3": "方案三按 s3 评分优先并尽量与方案一保持差异，作为备选。"
+  }
+}

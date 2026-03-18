@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Retake Schedule Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-decor"></div>
+    <main class="layout" id="layoutRoot">
+      <section class="panel panel-main">
+        <header class="hero">
+          <p id="eyebrowText" class="eyebrow">Retake Planner</p>
+          <h1 id="heroTitle">重修课表规划器</h1>
+          <p id="heroSubtitle" class="subtitle">本地部署 | 实时课表预览 | 多方案评分排序</p>
+        </header>
+
+        <section class="preset-block">
+          <h2 id="presetTitle">快速预设</h2>
+          <div class="preset-actions">
+            <div class="preset-item">
+              <button class="preset-btn" data-plan="plan1">预览方案一</button>
+              <button class="preset-info-btn" data-plan-info="plan1" type="button" aria-expanded="false" title="查看评分说明">?</button>
+            </div>
+
+            <div class="preset-item">
+              <button class="preset-btn" data-plan="plan2">预览方案二</button>
+              <button class="preset-info-btn" data-plan-info="plan2" type="button" aria-expanded="false" title="查看评分说明">?</button>
+            </div>
+
+            <div class="preset-item">
+              <button class="preset-btn" data-plan="plan3">预览方案三</button>
+              <button class="preset-info-btn" data-plan-info="plan3" type="button" aria-expanded="false" title="查看评分说明">?</button>
+            </div>
+          </div>
+          <div id="presetInfoPopover" class="preset-info-popover" hidden></div>
+        </section>
+
+        <section class="ranking-block">
+          <div class="ranking-head">
+            <h2 id="rankingTitle">全量规划排名</h2>
+            <p class="ranking-meta" id="rankingMeta">加载中...</p>
+          </div>
+          <div class="ranking-controls">
+            <label id="pageSizeLabel" for="pageSize">每页</label>
+            <select id="pageSize" class="compact-select">
+              <option value="20">20</option>
+              <option value="50" selected>50</option>
+              <option value="100">100</option>
+            </select>
+            <button id="prevPage" class="tiny-btn">上一页</button>
+            <button id="nextPage" class="tiny-btn">下一页</button>
+            <span id="pageInfo" class="ranking-meta"></span>
+          </div>
+          <div class="plan-list" id="planList"></div>
+        </section>
+
+        <section class="course-block" id="courseBlock"></section>
+
+        <section class="preference-block">
+          <button id="preferenceToggle" class="collapse-toggle" type="button" aria-expanded="false">偏好筛选</button>
+          <div id="preferencePanel" class="preference-panel" hidden>
+            <label class="preference-row" for="teacherPreferenceInput">
+              <span id="teacherPreferenceLabel">倾向选择教师</span>
+              <input id="teacherPreferenceInput" type="text" placeholder="输入教师关键词，多个可用逗号分隔" />
+            </label>
+            <div class="preference-row preference-days">
+              <span id="dayPreferenceLabel">倾向选择工作日</span>
+              <div class="day-check-grid" id="dayPreferenceChecks">
+                <label><input type="checkbox" value="1" />周一</label>
+                <label><input type="checkbox" value="2" />周二</label>
+                <label><input type="checkbox" value="3" />周三</label>
+                <label><input type="checkbox" value="4" />周四</label>
+                <label><input type="checkbox" value="5" />周五</label>
+                <label><input type="checkbox" value="6" />周六</label>
+                <label><input type="checkbox" value="7" />周日</label>
+              </div>
+            </div>
+            <p id="filterHint" class="ranking-meta">未启用筛选，显示全部规划。</p>
+          </div>
+        </section>
+
+        <section class="status-block">
+          <h2 id="statusTitle">当前组合状态</h2>
+          <div class="status-grid" id="statusGrid"></div>
+          <ul class="risk-list" id="riskList"></ul>
+        </section>
+      </section>
+
+      <div
+        id="layoutDivider"
+        class="layout-divider"
+        role="separator"
+        aria-orientation="vertical"
+        aria-label="调整左右面板宽度"
+        tabindex="0"
+      ></div>
+
+      <aside class="panel panel-side">
+        <div class="side-head">
+          <h2 id="weekPanelTitle">实时课表小窗</h2>
+          <p id="planName" class="plan-name">当前：自定义组合</p>
+        </div>
+        <div class="week-toolbar">
+          <label id="weekSelectLabel" for="weekSelect">显示周次</label>
+          <button id="weekPrevBtn" class="tiny-btn" type="button">上一周</button>
+          <select id="weekSelect" class="compact-select"></select>
+          <button id="weekNextBtn" class="tiny-btn" type="button">下一周</button>
+        </div>
+        <div class="week-grid-wrap">
+          <table class="week-grid">
+            <thead>
+              <tr>
+                <th id="periodHead">节次</th>
+                <th id="dayHead1">周一</th>
+                <th id="dayHead2">周二</th>
+                <th id="dayHead3">周三</th>
+                <th id="dayHead4">周四</th>
+                <th id="dayHead5">周五</th>
+                <th id="dayHead6">周六</th>
+                <th id="dayHead7">周日</th>
+              </tr>
+            </thead>
+            <tbody id="weekBody"></tbody>
+          </table>
+        </div>
+        <div class="mini-legend" id="miniLegend"></div>
+      </aside>
+    </main>
+
+    <div class="settings-anchor">
+      <button id="settingsToggle" class="settings-fab" type="button" aria-expanded="false">设置</button>
+      <div id="settingsPanel" class="settings-panel" hidden>
+        <h3 id="settingsTitle">设置</h3>
+        <label class="settings-row" for="languageSelect">
+          <span id="languageLabel">语言</span>
+          <select id="languageSelect" class="compact-select">
+            <option value="zh-CN">中文</option>
+            <option value="en-US">English</option>
+          </select>
+        </label>
+        <label class="settings-row" for="darkModeToggle">
+          <span id="darkModeLabel">暗色模式</span>
+          <input id="darkModeToggle" type="checkbox" />
+        </label>
+        <label class="settings-row" for="demoModeSelect">
+          <span id="demoModeLabel">演示模式</span>
+          <select id="demoModeSelect" class="compact-select">
+            <option value="off" data-no-obfuscate="true">关闭</option>
+            <option value="hash">加密映射（同文同密）</option>
+            <option value="random">全随机字符</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
